@@ -23,6 +23,7 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const expressSession = require("express-session");
+const cors = require("cors");
 
 const {
   initializingPassport,
@@ -48,7 +49,7 @@ let months = [
 ];
 
 app.use(methodOverride("_method"));
-
+app.use(cors());
 const port = process.env.PORT;
 app.listen(port || process.env.port, () => {
   console.log(`server running on port ${port}`);
@@ -70,7 +71,10 @@ app.get("/about-me", (req, res) => {
   res.render("about-me", { layout: "../tempelates/layout/main" });
 });
 
-app.get("/search", ensureAuthenticated, (req, res) => {
+app.get("/search",(req, res, next) => {
+  if(req.user) return next();
+  res.redirect("/login");
+}, (req, res) => {
   res.render("search", { layout: "../tempelates/layout/main" });
 });
 
@@ -260,4 +264,9 @@ app.delete("/logout", ensureNotAuthenticated, (req, res) => {
   req.logout();
   res.redirect("/login");
 });
+
+
+app.get("/compilar",(req, res, next) => {
+    res.render("compilar", {layout: "../tempelates/layout/main"});
+})
 
