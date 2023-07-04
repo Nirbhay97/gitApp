@@ -38,15 +38,19 @@
 
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/java");
+editor.getSession().setMode("ace/mode/c_cpp");
 
 var compileBtn = document.getElementById("compileBtn");
-compileBtn.addEventListener("click", compileCode);
+compileBtn.addEventListener("click", () => {
+    var userInput = document.getElementById("userInput").value;
+    compileCode(userInput);
+});
 
-function compileCode() {
+function compileCode(userInput) {
     var code = editor.getValue();
     var language = "cpp"; // Change to the desired programming language
 
+    console.log("vaue" + userInput);
     // Make an API request to JDoodle
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.jdoodle.com/v1/execute");
@@ -69,6 +73,7 @@ function compileCode() {
         script: code,
         language: language,
         versionIndex: "0",
+        stdin: userInput,
         clientId: "d4da456fbf15326d8b5e17e870cbc1fa",
         clientSecret: "7fb3e73d8cdd9bc0dfc21d2c4dc2ccda648c0cafb23a92f3998b1fe414897a2d"
     };

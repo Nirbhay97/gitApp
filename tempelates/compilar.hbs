@@ -1,8 +1,30 @@
-<center>
-      {{! dont change or beautify this code else extra spaces are added in the editor}}
-      <div class="editor-container" style="margin-top: 10rem;">
-        <div id="editor"></div>     
+<div class="compiler">
+    <!-- Left side -->
+    <div class="left-side">
+      This is the left side
+    </div>
+
+    <!-- Right side -->
+    <div class="right-side">
+      <div class="editor-container">
+        <div id="editor">#include"iostream"
+
+int main(){
+    return 0;
+}
+        </div>
       </div>
-    <button id="compileBtn">Compile</button>
-    <div id="output"></div>
-</center>
+      <button id="compileBtn">Compile</button>
+      <div class="container_c">
+        <!-- Input container -->
+        <div class="input-container glass-effect">
+          <textarea id="userInput" placeholder="Enter user input here..."></textarea>
+        </div>
+        <!-- Output container -->
+        <div class="output-container">
+          <div id="output"></div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

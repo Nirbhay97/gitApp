@@ -2264,12 +2264,17 @@ a:hover {
 .editor-container {
   position: relative;
   width: 670px;
-  height: 550px;
-  margin: auto;
+  height: 700px;
+  /* margin: auto; */
+  
+  margin-top: 5rem;
 }
+
 
 #editor {
   position: absolute;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   left: 0;
   top: 0;
   bottom: 0;
@@ -2277,3 +2282,79 @@ a:hover {
   height: 100%;
   width: 100%;
 }
+.compiler {
+  display: flex;
+}
+
+.left-side {
+  flex: 1;
+}
+
+.right-side {
+  flex: 1;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+
+.container_c {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  margin-right:4.5rem;
+}
+
+.input-container,
+.output-container {
+  width: 50%;
+  height: 120px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.glass-effect {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.input-container textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  box-shadow: none;
+  outline: none;
+}
+
+#compileBtn {
+  margin-top: 10px;
+  
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#compileBtn:hover {
+  background-color: #f5f7f5;
+  border-color: black;
+  color: green;
+}
+
+
+
+
+
+
