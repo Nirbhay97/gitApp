@@ -2263,7 +2263,7 @@ a:hover {
 
 .editor-container {
   position: relative;
-  width: 670px;
+  width: 640px;
   height: 700px;
   /* margin: auto; */
   
@@ -2311,7 +2311,8 @@ a:hover {
   justify-content: center;
   align-items: center;
   height: 20%;
-  /* margin-right:4.5rem; */
+  width: 40rem;
+  margin-right:.6rem;
 }
 
 .input-container,
@@ -2343,7 +2344,7 @@ a:hover {
 
 #compileBtn {
   margin-top: 15px;
-  /* margin-left: 36.5rem; */
+  margin-left: 34.5rem;
   padding: 7px 15px;
   background-color: #242524;
   color: #fff;
@@ -2375,7 +2376,8 @@ a:hover {
 }
 
 .glass-content {
-
+  margin-top: -1rem;
+  margin-left: -1rem;
 }
 
 .feature-div {
@@ -2433,4 +2435,35 @@ a:hover {
 
 .shift-rgt {
   margin-left: 8.3rem;
+}
+
+
+.search-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search-box input {
+  padding:8px;
+  border: 1px solid #1d1818;
+  border-radius: 10px;
+  width: 200px;
+}
+
+.search-box button {
+  padding: 8px 17px;
+  margin-left: 10px;
+  background-color: #242524;
+  color: #fff;
+  border:10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-box button:hover {
+  background-color: #e3ece4; 
+  color:#222222;
 }

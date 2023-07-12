@@ -273,6 +273,12 @@ app.delete("/logout", ensureNotAuthenticated, (req, res) => {
 
 app.get("/compilar", async (req, res, next) => {
 
+  //diff
+
+  
+
+
+  //===========================================
   // axios.get('https://codeforces.com/contest/1840/problem/A')
   // .then((response) => {
   //   const html = response.data;
@@ -292,6 +298,15 @@ app.get("/compilar", async (req, res, next) => {
   //   console.error(`Error: ${error.message}`);
   // });
 })
+
+
+
+
+
+
+
+
+
 
 
 
