@@ -2,6 +2,10 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 const express = require("express");
+const cheerio = require('cheerio');
+const axios = require("axios");
+var JSSoup = require('jssoup').default;
+const DOMParser = require("dom-parser");
 const bodyParser = require("body-parser");
 const app = express();
 app.use("/static", express.static("public"));
@@ -31,6 +35,7 @@ const {
   ensureNotAuthenticated,
 } = require("./passport-config.js");
 
+const { Configuration, OpenAIApi } = require("openai");
 initializingPassport(passport);
 
 let months = [
@@ -266,7 +271,64 @@ app.delete("/logout", ensureNotAuthenticated, (req, res) => {
 });
 
 
-app.get("/compilar",(req, res, next) => {
-    res.render("compilar", {layout: "../tempelates/layout/main"});
+app.get("/compilar", async (req, res, next) => {
+
+  // axios.get('https://codeforces.com/contest/1840/problem/A')
+  // .then((response) => {
+  //   const html = response.data;
+
+  //   // Load the HTML into Cheerio
+  //   const $ = cheerio.load(html);
+
+  //   // Extract the inner text of the desired div
+  //   const problemStatement = $('.problem-statement').text().trim();
+
+    // Print the extracted text
+      res.render("compilar", {layout: "../tempelates/layout/main"});
+
+  //   console.log(problemStatement);
+  // })
+  // .catch((error) => {
+  //   console.error(`Error: ${error.message}`);
+  // });
 })
 
+
+
+// // console.log(s);
+    // console.log(s.length);
+    // console.log(s.indexOf("problem-statement"));
+    // let ans = "";
+
+    // const regex = /"(.*?)"/g;
+    // const matches = s.match(regex);
+    // const strings = matches ? matches.map(match => match.slice(1, -1)) : [];
+    
+    // for(let i = 0; i < strings.length; i++ ) {
+    //   console.log(strings[i]);
+    // }
+    // // for(let i = s.indexOf("problem-statement"); i < 1000; i++){
+    //   // if(s[i] === '"'){
+    //   //   while(i + 1 < s.length && s[i + 1] !== '"'){
+    //   //     ans += s[i];
+    //   //     i += 1;
+    //   //   }
+    //    console.log((char)(s.charAt(i)));
+     
+    //   // }
+    // }
+
+    // console.log(ans);
+// make a new parser
+    // const parser = new DOMParser();
+
+    // convert html string into DOM
+    // const doc = parser.parseFromString(htmlStr, "text/html").getElementsByClassName("problem-statement");
+    // var soup = new JSSoup(data);
+    // var tag = soup.find('div');
+    // tag.name
+    // 'head'
+    // console.log(tag)
+    // res.render("compilar", {layout: "../tempelates/layout/main", data:data});
+
+    // console.log(doc);

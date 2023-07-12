@@ -36,6 +36,9 @@
 //     mode: "ace/mode/c_cpp"
 // })
 
+
+// for comilar........... above is for upload code show, 
+
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
 editor.getSession().setMode("ace/mode/c_cpp");
@@ -47,6 +50,7 @@ compileBtn.addEventListener("click", () => {
 });
 
 function compileCode(userInput) {
+   
     var code = editor.getValue();
     var language = "cpp"; // Change to the desired programming language
 
@@ -80,3 +84,8 @@ function compileCode(userInput) {
 
     xhr.send(JSON.stringify(data));
 }
+
+
+
+// for gpt prompting......
+
