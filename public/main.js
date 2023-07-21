@@ -1,5 +1,7 @@
 // pass options to ace.edit
-
+// const cheerio = require("cheerio");
+// const { load } = require("cheerio");
+// const axios = require("axios");
 
 // code for the uploaded code editor
 
@@ -39,6 +41,7 @@
 
 // for comilar........... above is for upload code show, 
 
+// console.log("hit");
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
 editor.getSession().setMode("ace/mode/c_cpp");
@@ -48,6 +51,7 @@ compileBtn.addEventListener("click", () => {
     var userInput = document.getElementById("userInput").value;
     compileCode(userInput);
 });
+
 
 function compileCode(userInput) {
    
@@ -90,3 +94,12 @@ function compileCode(userInput) {
 // for selecting lang......
 
 
+// const searchInput = document.getElementById("searchInput");
+// const searchButton = document.getElementById("searchButton");
+// //   const fetchUrl = null;
+// searchButton.addEventListener("click, function() {
+//   const searchValue = searchInput.value;
+//   // fetchUrl = searchValue;
+//   console.log("hi");
+//   console.log('Search Value:', searchValue);
+// });

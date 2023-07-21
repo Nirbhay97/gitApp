@@ -112,7 +112,7 @@ app.post("/search", async (req, res) => {
   }
 });
 
-app.get("/all", ensureAuthenticated, async (req, res) => {
+app.get("/all", async (req, res) => {
   try {
     const data = await TextFile.find().limit(5);
     let arr = [];
@@ -270,36 +270,58 @@ app.delete("/logout", ensureNotAuthenticated, (req, res) => {
   res.redirect("/login");
 });
 
+// var fetchUrl = null;
+// var temp = document.getElementById("searchButtonP");
+// temp.addEventListener("click", () => {
+//     var userp = document.getElementById("searchInputP").value;
+//     // compileCode(userp);
+//     fetchUrl = userp;
+//     console.log(userp);
+// });
+
 
 app.get("/compilar", async (req, res, next) => {
 
   //diff
 
-  
-
 
   //===========================================
-  // axios.get('https://codeforces.com/contest/1840/problem/A')
-  // .then((response) => {
-  //   const html = response.data;
+  
+  const url = "https://codeforces.com/contest/1840/problem/A";
+  axios.get(url)
+  .then((response) => {
+    const html = response.data;
 
-  //   // Load the HTML into Cheerio
-  //   const $ = cheerio.load(html);
+    // Load the HTML into Cheerio
+    const $ = cheerio.load(html);
 
-  //   // Extract the inner text of the desired div
-  //   const problemStatement = $('.problem-statement').text().trim();
+    const problemStatement = $('.problem-statement').text().trim();
 
-    // Print the extracted text
-      res.render("compilar", {layout: "../tempelates/layout/main"});
+    res.render("compilar", {layout: "../tempelates/layout/main"});
 
-  //   console.log(problemStatement);
-  // })
-  // .catch((error) => {
-  //   console.error(`Error: ${error.message}`);
-  // });
+    function removeMathJaxSyntax(inputString) {
+      // Regular expression to match MathJax syntax
+      const mathJaxRegex = /\$\$(.*?)\$\$|\$(.*?)\$/g;
+    
+      // Replace MathJax syntax with an empty string
+      const plainString = inputString.replace(mathJaxRegex, '');
+    
+      return plainString;
+    }
+
+    
+    console.log(removeMathJaxSyntax(problemStatement));
+  })
+  .catch((error) => {
+    console.error(`Error: ${error.message}`);
+  });
 })
 
 
+app.post("/compilar", async (req, res, next) => {
+    console.log(req);
+    return res.render("compilar", {layout: "../tempelates/layout/main"});
+})
 
 
 

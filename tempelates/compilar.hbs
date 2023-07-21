@@ -1,14 +1,13 @@
 
 <div>
-<div class="glass-container">
-  <div class="glass-content">
-    <div class="search-box">
-      <input type="text" placeholder="Search...">
-      <button type="submit">Search</button>
+  <div class="glass-container">
+    <div class="glass-content">
+      <form method="post" class="search-box">
+        <input id="searchInput" placeholder="Search...">
+        <button id="searchButton">Search</button>
+      </form>
     </div>
-
   </div>
-</div>
 
 <div class="compiler">
     <!-- Left side -->
@@ -93,5 +92,17 @@ int main(){
     </div>
   </div>
   </div>
+
+  <script>
+    {{!-- const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const fetchUrl = null;
+    searchButton.addEventListener("click", function() {
+      const searchValue = searchInput.value;
+      fetchUrl = searchValue;
+      console.log("hi");
+      console.log('Search Value:', searchValue);
+    }); --}}
+  </script>
 
   
