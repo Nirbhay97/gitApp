@@ -35,6 +35,7 @@ const {
   ensureNotAuthenticated,
 } = require("./passport-config.js");
 
+
 const { Configuration, OpenAIApi } = require("openai");
 initializingPassport(passport);
 
@@ -332,16 +333,16 @@ app.get("/compilar", async (req, res, next) => {
     console.log([ProblemExplanation,TimeLimit,MemLimit,InputFormat,OutputFormat,ExampleInput,Example]);
     // console.log()
     res.render("compilar", {layout: "../tempelates/layout/main" , 
-    ProblemName : ProblemName,
-    TimeLimit: TimeLimit,
-    MemLimit: MemLimit,
-    InputStandard: InputStandard,
-    OutputStandard: OutputStandard,
-    ProblemExplanation: ProblemExplanation,
-    InputFormat: InputFormat,
-    OutputFormat: OutputFormat,
-    ExampleInput: ExampleInput,
-    Example: Example
+      ProblemName : ProblemName,
+      TimeLimit: TimeLimit,
+      MemLimit: MemLimit,
+      InputStandard: InputStandard,
+      OutputStandard: OutputStandard,
+      ProblemExplanation: ProblemExplanation,
+      InputFormat: InputFormat,
+      OutputFormat: OutputFormat,
+      ExampleInput: ExampleInput,
+      Example: Example
   
   });
     
