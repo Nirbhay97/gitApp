@@ -286,6 +286,10 @@ app.get("/compilar", async (req, res, next) => {
 
 
   //===========================================
+ 
+  
+
+
   
   const url = "https://codeforces.com/contest/1840/problem/A";
   axios.get(url)
@@ -295,22 +299,52 @@ app.get("/compilar", async (req, res, next) => {
     // Load the HTML into Cheerio
     const $ = cheerio.load(html);
 
-    const problemStatement = $('.problem-statement').text().trim();
+    const text = $('.problem-statement').text().trim();
 
-    res.render("compilar", {layout: "../tempelates/layout/main"});
-
-    function removeMathJaxSyntax(inputString) {
-      // Regular expression to match MathJax syntax
-      const mathJaxRegex = /\$\$(.*?)\$\$|\$(.*?)\$/g;
     
-      // Replace MathJax syntax with an empty string
-      const plainString = inputString.replace(mathJaxRegex, '');
-    
-      return plainString;
+    // console.log(problemStatement);
+    function getStringBetweenRegex(str, start, end) {
+      var regex = new RegExp(start + "(.*?)" + end );
+      var matches = str.match(regex);
+      if (matches && matches.length > 0) {
+        return matches[0].replace(start, "").replace(end, "");
+      }
+      
+      return '';
     }
-
     
-    console.log(removeMathJaxSyntax(problemStatement));
+    // let text = "A. Cipher Shifertime limit per test1 secondmemory limit per test256 megabytesinputstandard inputoutputstandard outputThere is a string $$$a$$$ (unknown to you), consisting of lowercase Latin letters, encrypted according to the following rule into string $$$s$$$: after each character of string $$$a$$$, an arbitrary (possibly zero) number of any lowercase Latin letters, different from the character itself, is added; after each such addition, the character that we supplemented is added. You are given string $$$s$$$, and you need to output the initial string $$$a$$$. In other words, you need to decrypt string $$$s$$$.Note that each string encrypted in this way is decrypted uniquely.InputThe first line of the input contains a single integer $$$t$$$ ($$$1 \le t \le 1000$$$) — the number of test cases.The descriptions of the test cases follow.The first line of each test case contains a single integer $$$n$$$ ($$$2 \le n \le 100$$$) — the length of the encrypted message.The second line of each test case contains a string $$$s$$$ of length $$$n$$$ — the encrypted message obtained from some string $$$a$$$.OutputFor each test case, output the decrypted message $$$a$$$ on a separate line.ExampleInput38abacabac5qzxcq20ccooddeeffoorrcceessOutputac q codeforces NoteIn the first encrypted message, the letter $$$a$$$ is encrypted as $$$aba$$$, and the letter $$$c$$$ is encrypted as $$$cabac$$$.In the second encrypted message, only one letter $$$q$$$ is encrypted as $$$qzxcq$$$.In the third encrypted message, zero characters are added to each letter.";
+    
+    
+    
+    let ans = getStringBetweenRegex(text,"input","output")
+    let ProblemName = getStringBetweenRegex(text,"","time limit per test");
+    let TimeLimit = getStringBetweenRegex(text,"time limit per test","memory limit per test");
+    let MemLimit = getStringBetweenRegex(text,"memory limit per test","input");
+    let InputStandard = "standard input";
+    let OutputStandard = "standard output";
+    let ProblemExplanation = getStringBetweenRegex(text,"standard output","Input");
+    let InputFormat = getStringBetweenRegex(text,"Input","Output");
+    let OutputFormat = getStringBetweenRegex(text,"Output","Example");
+    let ExampleInput = getStringBetweenRegex(text,"ExampleInput","Output");
+    let Example = getStringBetweenRegex(text,"ExampleInput","Note");
+    
+    console.log([ProblemExplanation,TimeLimit,MemLimit,InputFormat,OutputFormat,ExampleInput,Example]);
+    // console.log()
+    res.render("compilar", {layout: "../tempelates/layout/main" , 
+    ProblemName : ProblemName,
+    TimeLimit: TimeLimit,
+    MemLimit: MemLimit,
+    InputStandard: InputStandard,
+    OutputStandard: OutputStandard,
+    ProblemExplanation: ProblemExplanation,
+    InputFormat: InputFormat,
+    OutputFormat: OutputFormat,
+    ExampleInput: ExampleInput,
+    Example: Example
+  
+  });
+    
   })
   .catch((error) => {
     console.error(`Error: ${error.message}`);
@@ -319,12 +353,28 @@ app.get("/compilar", async (req, res, next) => {
 
 
 app.post("/compilar", async (req, res, next) => {
-    console.log(req);
-    return res.render("compilar", {layout: "../tempelates/layout/main"});
-})
+  if (req.body.searchInput === "") {
+    res.redirect("/compilar");
+  }
+  const url = req.body.searchInput;
+  axios
+    .get(url)
+    .then((response) => {
+      const html = response.data;
 
+      const $ = cheerio.load(html);
 
+      const problemStatement = $(".problem-statement").text().trim();
+      // console.log(problemStatement);
+      res.render("compilar", { layout: "../tempelates/layout/main" });
 
+ 
+      console.log(problemStatement);
+    })
+    .catch((error) => {
+      console.error(`Error: ${error.message}`);
+    });
+});
 
 
 
