@@ -35,6 +35,7 @@ const {
   ensureNotAuthenticated,
 } = require("./passport-config.js");
 
+
 const { Configuration, OpenAIApi } = require("openai");
 initializingPassport(passport);
 
